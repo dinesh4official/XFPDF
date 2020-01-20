@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:XFPDF;assembly=XFPDF"
+             mc:Ignorable="d" Title="HTML-PDF Converter"
+             x:Class="XFPDF.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:VisibilityConverter x:Key="VisibilityConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Button x:Name="ConvertHTMLToPDF" Text="Generate PDF" IsVisible="{Binding IsPDFGenerating, Converter={x:StaticResource VisibilityConverter}}"
+                Clicked="ConvertHTMLToPDF_Clicked" HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"/>
+        <ContentView BackgroundColor="#C0808080" Padding="10, 0" IsVisible="{Binding IsPDFGenerating}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <StackLayout Orientation="Vertical" HeightRequest="150" WidthRequest="200" BackgroundColor="White">
+                    <ActivityIndicator Margin="0,50,0,0" VerticalOptions="Center" HorizontalOptions="Center"
+                                       IsRunning="{Binding IsPDFGenerating}" Color="Black" WidthRequest="30" HeightRequest="30"/>
+                    <Label TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" Text="Loading..."/>
+                </StackLayout>
+            </StackLayout>
+        </ContentView>
+    </Grid>
+</ContentPage>
