@@ -1,0 +1,755 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EAADB44D-BB73-4749-8C70-2A9DADEF0040}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>XFPDF.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>XFPDF.iOS</AssemblyName>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchSdkVersion>13.2</MtouchSdkVersion>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision />
+    <CodesignExtraArgs />
+    <CodesignResourceRules />
+    <CodesignEntitlements />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
+    <MtouchInterpreter>-all</MtouchInterpreter>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Helper\Dependency\FileHelper.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Helper\Native\WebViewCallBack.cs" />
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
+    <Compile Include="Helper\Dependency\PDFConverter.cs" />
+    <Compile Include="Control\PdfWebViewRenderer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\pdfjs\LICENSE" />
+    <BundleResource Include="Resources\pdfjs\build\pdf.js.map" />
+    <BundleResource Include="Resources\pdfjs\build\pdf.worker.js.map" />
+    <BundleResource Include="Resources\pdfjs\web\compressed.tracemonkey-pldi-09.pdf" />
+    <BundleResource Include="Resources\pdfjs\web\viewer.js.map" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\78-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\78-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\78-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\78-RKSJ-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\78-RKSJ-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\78-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\78ms-RKSJ-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\78ms-RKSJ-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\83pv-RKSJ-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\90ms-RKSJ-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\90ms-RKSJ-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\90msp-RKSJ-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\90msp-RKSJ-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\90pv-RKSJ-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\90pv-RKSJ-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Add-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Add-RKSJ-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Add-RKSJ-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Add-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-CNS1-0.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-CNS1-1.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-CNS1-2.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-CNS1-3.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-CNS1-4.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-CNS1-5.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-CNS1-6.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-CNS1-UCS2.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-GB1-0.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-GB1-1.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-GB1-2.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-GB1-3.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-GB1-4.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-GB1-5.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-GB1-UCS2.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Japan1-0.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Japan1-1.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Japan1-2.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Japan1-3.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Japan1-4.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Japan1-5.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Japan1-6.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Japan1-UCS2.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Korea1-0.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Korea1-1.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Korea1-2.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Adobe-Korea1-UCS2.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\B5pc-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\B5pc-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\CNS-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\CNS-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\CNS1-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\CNS1-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\CNS2-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\CNS2-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\ETen-B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\ETen-B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\ETenms-B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\ETenms-B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\ETHK-B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\ETHK-B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Ext-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Ext-RKSJ-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Ext-RKSJ-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Ext-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GB-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GB-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GB-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GB-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBK-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBK-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBK2K-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBK2K-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBKp-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBKp-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBpc-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBpc-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBT-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBT-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBT-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBT-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBTpc-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\GBTpc-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Hankaku.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Hiragana.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKdla-B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKdla-B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKdlb-B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKdlb-B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKgccs-B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKgccs-B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKm314-B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKm314-B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKm471-B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKm471-B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKscs-B5-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\HKscs-B5-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Katakana.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSC-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSC-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSC-Johab-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSC-Johab-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSCms-UHC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSCms-UHC-HW-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSCms-UHC-HW-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSCms-UHC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSCpc-EUC-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\KSCpc-EUC-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\LICENSE" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\NWP-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\NWP-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\RKSJ-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\RKSJ-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\Roman.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniCNS-UCS2-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniCNS-UCS2-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniCNS-UTF16-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniCNS-UTF16-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniCNS-UTF32-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniCNS-UTF32-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniCNS-UTF8-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniCNS-UTF8-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniGB-UCS2-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniGB-UCS2-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniGB-UTF16-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniGB-UTF16-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniGB-UTF32-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniGB-UTF32-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniGB-UTF8-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniGB-UTF8-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UCS2-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UCS2-HW-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UCS2-HW-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UCS2-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UTF16-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UTF16-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UTF32-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UTF32-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UTF8-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS-UTF8-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS2004-UTF16-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS2004-UTF16-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS2004-UTF32-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS2004-UTF32-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS2004-UTF8-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJIS2004-UTF8-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJISPro-UCS2-HW-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJISPro-UCS2-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJISPro-UTF8-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJISX0213-UTF32-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJISX0213-UTF32-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJISX02132004-UTF32-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniJISX02132004-UTF32-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniKS-UCS2-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniKS-UCS2-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniKS-UTF16-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniKS-UTF16-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniKS-UTF32-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniKS-UTF32-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniKS-UTF8-H.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\UniKS-UTF8-V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\V.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\cmaps\WP-Symbol.bcmap" />
+    <BundleResource Include="Resources\pdfjs\web\locale\locale.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ach\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\af\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ak\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\an\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ar\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\as\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ast\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\az\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\be\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\bg\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\bn-BD\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\bn-IN\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\br\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\brx\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\bs\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ca\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\cak\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\crh\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\cs\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\csb\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\cy\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\da\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\de\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\el\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\en-CA\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\en-GB\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\en-US\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\en-ZA\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\eo\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\es-AR\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\es-CL\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\es-ES\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\es-MX\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\et\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\eu\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\fa\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ff\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\fi\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\fr\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\fy-NL\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ga-IE\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\gd\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\gl\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\gn\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\gu-IN\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\he\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\hi-IN\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\hr\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\hsb\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\hto\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\hu\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\hy-AM\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ia\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\id\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\is\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\it\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ja\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ka\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\kab\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\kk\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\km\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\kn\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ko\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\kok\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ks\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ku\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\lg\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\lij\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\lo\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\lt\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ltg\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\lv\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\mai\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\meh\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\mk\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ml\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\mn\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\mr\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ms\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\my\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\nb-NO\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ne-NP\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\nl\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\nn-NO\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\nso\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\oc\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\or\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\pa-IN\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\pl\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\pt-BR\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\pt-PT\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\rm\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ro\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ru\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\rw\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\sah\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\sat\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\si\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\sk\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\sl\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\son\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\sq\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\sr\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\sv-SE\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\sw\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ta\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ta-LK\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\te\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\th\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\tl\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\tn\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\tr\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\tsz\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\uk\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\ur\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\uz\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\vi\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\wo\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\xh\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\zam\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\zh-CN\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\zh-TW\viewer.properties" />
+    <BundleResource Include="Resources\pdfjs\web\locale\zu\viewer.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\XFPDF\XFPDF.csproj">
+      <Project>{2BC10B6A-824D-4093-9B05-6E8738A9547F}</Project>
+      <Name>XFPDF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\build\pdf.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\build\pdf.worker.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\debugger.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\viewer.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\viewer.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\viewer.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\annotation-check.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\annotation-comment.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\annotation-help.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\annotation-insert.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\annotation-key.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\annotation-newparagraph.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\annotation-noicon.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\annotation-note.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\annotation-paragraph.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\findbarButton-next-rtl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\findbarButton-next-rtl%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\findbarButton-next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\findbarButton-next%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\findbarButton-previous-rtl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\findbarButton-previous-rtl%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\findbarButton-previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\findbarButton-previous%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\grab.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\grabbing.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\loading-icon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\loading-small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\loading-small%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-documentProperties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-documentProperties%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-firstPage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-firstPage%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-handTool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-handTool%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-lastPage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-lastPage%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-rotateCcw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-rotateCcw%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-rotateCw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-rotateCw%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-scrollHorizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-scrollHorizontal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-scrollVertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-scrollVertical%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-scrollWrapped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-scrollWrapped%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-selectTool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-selectTool%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-spreadEven.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-spreadEven%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-spreadNone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-spreadNone%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-spreadOdd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\secondaryToolbarButton-spreadOdd%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\shadow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\texture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-bookmark%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-download%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-menuArrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-menuArrows%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-openFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-openFile%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-pageDown-rtl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-pageDown-rtl%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-pageDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-pageDown%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-pageUp-rtl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-pageUp-rtl%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-pageUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-pageUp%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-presentationMode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-presentationMode%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-print%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-search%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-secondaryToolbarToggle-rtl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-secondaryToolbarToggle-rtl%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-secondaryToolbarToggle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-secondaryToolbarToggle%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-sidebarToggle-rtl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-sidebarToggle-rtl%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-sidebarToggle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-sidebarToggle%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-viewAttachments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-viewAttachments%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-viewOutline-rtl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-viewOutline-rtl%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-viewOutline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-viewOutline%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-viewThumbnail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-viewThumbnail%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-zoomIn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-zoomIn%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-zoomOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\toolbarButton-zoomOut%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\treeitem-collapsed-rtl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\treeitem-collapsed-rtl%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\treeitem-collapsed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\treeitem-collapsed%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\treeitem-expanded.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdfjs\web\images\treeitem-expanded%402x.png" />
+  </ItemGroup>
+</Project>
