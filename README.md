@@ -31,7 +31,7 @@ In recent days, I tried to convert the HTML string to PDF file in Xamarin Forms.
 
 **For Android**
 
-With the support of Native WebView and WebViewClient, you can create your own print document adapter where you can customize your PDF file. Instead of printing the PDF file using device printer, create your own callbacks to write into the file and save the file in custom location. 
+With the support of Native WebView and WebViewClient, you can create your own print document adapter where you can customize your PDF file as required. Instead of printing the PDF file using device printer, create your own callbacks to write into the file and save the file in custom location. 
 
 ```
    public class PdfLayoutResultCallback : PrintDocumentAdapter.LayoutResultCallback
@@ -139,7 +139,7 @@ With the support of WKWebView and WKNavigationDelegate, you can easily write the
 
 ```
  class WebViewCallBack : WKNavigationDelegate
-    {
+ {
         private PDFToHtml PDFToHtml { get; set; }
 
         public WebViewCallBack(PDFToHtml _pDFToHtml)
