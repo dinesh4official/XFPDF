@@ -27,7 +27,7 @@ You can easily get the HTML string from an URL either through HTTPClient or WebC
 
 # Convert the HTML string to PDF file
 
-In recent days, I tried to convert the HTML string to PDF file in Xamarin Forms. But, unfortunately, there is no free library or default support in Xamarin platform. So, I tried to achieve the requirement with the help of [WebView](https://docs.microsoft.com/en-us/dotnet/api/xamarin.forms.webview) and Xamarin Forums, I got ideas from colleagues and finally achieved the requirement through renderers. 
+In recent days, I tried to convert the HTML string to PDF file in Xamarin Forms. But, unfortunately, there is no free library or default support in Xamarin platform. With the help of [WebView](https://docs.microsoft.com/en-us/dotnet/api/xamarin.forms.webview) and Xamarin Forums, I got ideas from colleagues and finally achieved the requirement through renderers. 
 
 **For Android**
 
