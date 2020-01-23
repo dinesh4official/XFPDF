@@ -218,7 +218,7 @@ Showing a PDF file seems a very easy task, and depending on what platform you ar
 
 ## Android
 
-The first thing we need to do is download the [pdfjs](https://mozilla.github.io/pdf.js/) library and add it to **Android Assets** in the pdfjs folder. Make sure the build action for all files is set to [AndroidAsset]. 
+The first thing we need to do is download the [pdfjs](https://mozilla.github.io/pdf.js/) library and paste the **pdfjs** folder in **Android Assets**. Make sure the build action for all files is set to `AndroidAsset`. 
 
 ```
 [assembly: ExportRenderer(typeof(PdfWebView), typeof(PdfWebViewRenderer))]
@@ -296,7 +296,7 @@ namespace XFPDF.Droid
 
 ## iOS
 
-For iOS platform, just copy the downloaded **pdfjs** folder and paste it into the **Resources** folder. Make sure the build action for all files is set to [BundleResource].
+For iOS platform, just copy the downloaded **pdfjs** folder and paste it into the **Resources** folder. Make sure the build action for all files is set to **BundleResource**.
 
 ```
 [assembly: ExportRenderer(typeof(PdfWebView), typeof(PdfWebViewRenderer))]
@@ -358,9 +358,9 @@ namespace XFPDF.iOS
 
 ## Display the PDF file
 
-All set, now its time to use the [pdfjs] to show the PDF file. Write the custom renderers for each platform for your custom **WebView** as shared in above code snippet and in  `Uri` bindable property set the path of PDF file.
+All set, now its time to use the `pdfjs` to show the PDF file. Write the custom renderers for each platform for your custom **WebView** as shared in above code snippet and in  `Uri` bindable property set the path of PDF file.
 
-Additionally, to give a connection between the [pdfjs] and this project, you need to bind them as like below code example.
+Additionally, to give a connection between the `pdfjs` and this project, you need to bind them as like below code example.
 
 **Android**
 ```
@@ -373,8 +373,9 @@ Control.LoadUrl(PdfJsViewerUri + url);
 Control.EvaluateJavascript($"DEFAULT_URL='{Element?.Uri}'; window.location.href='{PdfJsViewerUri}?file=file://{Element?.Uri}'; ");
 ```
 
-Where `PdfJsViewerUri` is nothing but the path of [pdfjs] folder.
+Where `PdfJsViewerUri` is nothing but the path of `pdfjs` folder.
 
+```
 public static class PDFUtils
 {
   private static string GetBaseUrl()
@@ -386,3 +387,5 @@ public static class PDFUtils
 
   public static string PdfJsViewerUri => GetBaseUrl() + "web/viewer.html";
 }
+```
+
