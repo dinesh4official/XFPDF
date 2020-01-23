@@ -214,6 +214,175 @@ With the support of WKWebView and WKNavigationDelegate, you can easily write the
 
 # View the PDF file
 
-Through native support, one can view the PDF file with the help of [pdfjs](https://mozilla.github.io/pdf.js/) library. For more reference, please refer the below article.
+Showing a PDF file seems a very easy task, and depending on what platform you are targeting; it is. Through native support, one can view the PDF file with the help of [pdfjs](https://mozilla.github.io/pdf.js/) library.
 
-https://www.c-sharpcorner.com/article/pdf-viewer-in-android-using-xamarin-forms/ 
+## Android
+
+The first thing we need to do is download the [pdfjs](https://mozilla.github.io/pdf.js/) library and add it to **Android Assets** in the pdfjs folder. Make sure the build action for all files is set to [AndroidAsset]. 
+
+```
+[assembly: ExportRenderer(typeof(PdfWebView), typeof(PdfWebViewRenderer))]
+namespace XFPDF.Droid
+{
+    public class PdfWebViewRenderer : WebViewRenderer
+    {
+        private PdfWebView PdfWebView { get { return this.Element as PdfWebView; } }
+
+        private string PdfJsViewerUri => PDFUtils.PdfJsViewerUri;
+
+        public PdfWebViewRenderer(Android.Content.Context context) : base(context)
+        {
+
+        }
+
+        protected override void OnElementChanged(ElementChangedEventArgs<WebView> e)
+        {
+            base.OnElementChanged(e);
+
+            if (e.NewElement != null)
+            {
+                Control.Settings.AllowFileAccess = true;
+                Control.Settings.AllowFileAccessFromFileURLs = true;
+                Control.Settings.AllowUniversalAccessFromFileURLs = true;
+                Control.Settings.UseWideViewPort = true;
+                Control.Settings.LoadWithOverviewMode = true;
+                this.UpdateDisplayZoomControls();
+                this.UpdateEnableZoomControls();
+                this.Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
+                this.LoadPdfFile(this.PdfWebView.Uri);
+            }
+        }
+
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName == PdfWebView.UriProperty.PropertyName)
+                this.LoadPdfFile(this.PdfWebView.Uri);
+        }
+
+        void UpdateEnableZoomControls()
+        {
+            // BuiltInZoomControls supported as of API level 3
+            if (Control != null && ((int)Build.VERSION.SdkInt >= 3))
+            {
+                var value = Element.OnThisPlatform().ZoomControlsEnabled();
+                Control.Settings.SetSupportZoom(value);
+                Control.Settings.BuiltInZoomControls = value;
+            }
+        }
+
+        void UpdateDisplayZoomControls()
+        {
+            // DisplayZoomControls supported as of API level 11
+            if (Control != null && ((int)Build.VERSION.SdkInt >= 11))
+            {
+                var value = Element.OnThisPlatform().ZoomControlsDisplayed();
+                Control.Settings.DisplayZoomControls = value;
+            }
+        }
+
+        void LoadPdfFile(string uri)
+        {
+            if (string.IsNullOrWhiteSpace(uri))
+                return;
+
+            string url = $"?file={WebUtility.UrlEncode(uri)}";
+            Control.LoadUrl(PdfJsViewerUri + url);
+        }
+    }
+}
+```
+
+## iOS
+
+For iOS platform, just copy the downloaded **pdfjs** folder and paste it into the **Resources** folder. Make sure the build action for all files is set to [BundleResource].
+
+```
+[assembly: ExportRenderer(typeof(PdfWebView), typeof(PdfWebViewRenderer))]
+namespace XFPDF.iOS
+{
+    class PdfWebViewRenderer : ViewRenderer<PdfWebView, UIWebView>
+    {
+        private string PdfJsViewerUri => PDFUtils.PdfJsViewerUri;
+
+        public PdfWebViewRenderer() : base()
+        {
+
+        }
+
+        protected override void OnElementChanged(ElementChangedEventArgs<PdfWebView> e)
+        {
+            base.OnElementChanged(e);
+
+            if (e.NewElement != null)
+            {
+                this.SetNativeControl(new UIWebView());
+                this.Control.ScrollView.Bounces = false;
+                this.Control.ScrollView.BouncesZoom = false;
+                this.Control.ScrollView.AlwaysBounceHorizontal = false;
+                this.Control.ScrollView.AlwaysBounceVertical = false;
+                this.LoadPdfFile(this.Element?.Uri);
+                this.Control.BackgroundColor = UIColor.Clear;
+                //Control.ScrollView.ScrollEnabled = false;
+                //Control.ScalesPageToFit = false;
+                //Control.MultipleTouchEnabled = false;
+            }
+        }
+
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName == PdfWebView.UriProperty.PropertyName)
+                this.LoadPdfFile(this.Element.Uri);
+        }
+
+        private void LoadPdfFile(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                return;
+
+            Control.LoadRequest(new NSUrlRequest(new NSUrl(PdfJsViewerUri, false)));
+            Control.LoadFinished += Control_LoadFinished;
+        }
+
+        private void Control_LoadFinished(object sender, System.EventArgs e)
+        {
+            Control.LoadFinished -= Control_LoadFinished;
+            Control.EvaluateJavascript($"DEFAULT_URL='{Element?.Uri}'; window.location.href='{PdfJsViewerUri}?file=file://{Element?.Uri}'; ");
+        }
+    }
+}
+```
+
+## Display the PDF file
+
+All set, now its time to use the [pdfjs] to show the PDF file. Write the custom renderers for each platform for your custom **WebView** as shared in above code snippet and in  `Uri` bindable property set the path of PDF file.
+
+Additionally, to give a connection between the [pdfjs] and this project, you need to bind them as like below code example.
+
+**Android**
+```
+string url = $"?file={WebUtility.UrlEncode(uri)}";
+Control.LoadUrl(PdfJsViewerUri + url);
+```
+
+**iOS**
+```
+Control.EvaluateJavascript($"DEFAULT_URL='{Element?.Uri}'; window.location.href='{PdfJsViewerUri}?file=file://{Element?.Uri}'; ");
+```
+
+Where `PdfJsViewerUri` is nothing but the path of [pdfjs] folder.
+
+public static class PDFUtils
+{
+  private static string GetBaseUrl()
+  {
+     //fileHelper returns the path of pdfjs folder for both Android and iOS project.
+     var fileHelper = DependencyService.Get<IFileHelper>();
+     return fileHelper.ResourcesBaseUrl + "pdfjs/";
+  }
+
+  public static string PdfJsViewerUri => GetBaseUrl() + "web/viewer.html";
+}
